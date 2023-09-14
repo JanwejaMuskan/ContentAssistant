@@ -77,3 +77,37 @@ input{
 input:focus{
   outline: none;
 }
+
+nav {
+  height: 70px;
+  display: flex;
+  padding: 20px 36px;
+  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+}
+ul{
+   display: flex;
+   /* justify-content: space-between; */
+   width: 100%;
+}
+li{
+  text-align: center;
+    list-style: none;
+    padding: 10px;
+}
+a{
+   color: #ffffff;
+   text-decoration: none;
+}
+.meme--image {
+  max-width: 100%;
+}
+.form--button {
+  width: 100%;
+  grid-column: 1 / -1;
+  font-family: "Karla", sans-serif;
+  border-radius: 5px;
+  background: linear-gradient(90.41deg, #711F8D 1.14%, #A818DA 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
