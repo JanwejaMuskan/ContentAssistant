@@ -1,5 +1,5 @@
 const express = require('express');
-const axios = require('axios'); // Use axios instead of node-fetch
+const axios = require('axios'); 
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -12,7 +12,7 @@ app.use(cors());
 
 app.post('/forward-to-slack', async (req, res) => {
   const { message } = req.body;
-  const slackWebhookUrl = 'https://hooks.slack.com/services/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'; // Replace with your Slack webhook URL
+  const slackWebhookUrl = 'https://hooks.slack.com/services/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'; // Replace with your Slack webhook URL
 
   try {
     const response = await axios.post(slackWebhookUrl, { text: message });

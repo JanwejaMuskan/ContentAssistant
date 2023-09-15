@@ -1,4 +1,5 @@
-import React, { useState, useRef  } from "react";
+import React, { useState, useRef } from "react";
+import "./index.css"
 
 function ImageEdit() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -47,29 +48,29 @@ function ImageEdit() {
         // Sepia filter
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
-  
+
         for (let i = 0; i < data.length; i += 4) {
           const red = data[i];
           const green = data[i + 1];
           const blue = data[i + 2];
-  
+
           data[i] = Math.min(255, 0.393 * red + 0.769 * green + 0.189 * blue);
           data[i + 1] = Math.min(255, 0.349 * red + 0.686 * green + 0.168 * blue);
           data[i + 2] = Math.min(255, 0.272 * red + 0.534 * green + 0.131 * blue);
         }
-  
+
         ctx.putImageData(imageData, 0, 0);
       } else if (selectedFilter === "invert") {
         // Invert filter
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
-  
+
         for (let i = 0; i < data.length; i += 4) {
           data[i] = 255 - data[i];
           data[i + 1] = 255 - data[i + 1];
           data[i + 2] = 255 - data[i + 2];
         }
-  
+
         ctx.putImageData(imageData, 0, 0);
       }
 
@@ -82,7 +83,6 @@ function ImageEdit() {
   return (
     <div className="image-edit-container">
       <h1>Image Editing</h1>
-
       <div className="image-upload">
         <input
           type="file"
@@ -96,29 +96,31 @@ function ImageEdit() {
             className="selected-image"
           />
         )}
-      </div>
-      <canvas ref={canvasRef}></canvas>
-      <div className="filter-options">
-        <label>Select a Filter:</label>
-        <select
-          value={selectedFilter}
-          onChange={(e) => setSelectedFilter(e.target.value)}
-        >
-          <option value="none">None</option>
-          <option value="grayscale">Grayscale</option>
-          <option value="sepia">Sepia</option>
-          <option value="invert">Invert</option>
-          {/* Add more filter options here */}
-        </select>
-        <button onClick={applyFilter}>Apply Filter</button>
+        {selectedImage && <div className="filter-options">
+          <label>Select a Filter:</label>
+          <select
+            value={selectedFilter}
+            onChange={(e) => setSelectedFilter(e.target.value)}
+          >
+            <option value="none">None</option>
+            <option value="grayscale">Grayscale</option>
+            <option value="sepia">Sepia</option>
+            <option value="invert">Invert</option>
+            {/* Add more filter options here */}
+          </select>
+          <button className="Apply-filter" onClick={applyFilter}>Apply Filter</button>
+        </div>
+        }
       </div>
 
-      {filteredImage && (
-        <div className="filtered-image">
-          <h2>Edited Image</h2>
-          <img src={filteredImage} alt="Filtered" />
-        </div>
-      )}
+      <div>
+        {selectedFilter !== "none" && (
+          <>
+            <h2>Edited Image</h2>
+            <canvas ref={canvasRef}></canvas>
+          </>
+        )}
+      </div>
     </div>
   );
 }

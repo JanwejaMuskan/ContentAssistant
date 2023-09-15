@@ -14,9 +14,6 @@ export default function Navbar() {
         <li>
           <Link to="/imageEdit">Image Editing</Link>
         </li>
-        <li>
-          <Link to="/speechToText">Speech To Text</Link>
-        </li>
       </ul>
     </nav>
   );
